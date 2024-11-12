@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dag58pst6inod"
+path="res://.godot/imported/One Man Symphony - Undauntable (Free) - 01 Undauntable.ogg-143cd4c76b7e8253cef411d37d2fedd4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/third_party/One Man Symphony Music/One Man Symphony - Undauntable (Free) - 01 Undauntable.ogg"
+dest_files=["res://.godot/imported/One Man Symphony - Undauntable (Free) - 01 Undauntable.ogg-143cd4c76b7e8253cef411d37d2fedd4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

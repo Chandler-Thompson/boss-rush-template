@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfw8s3w0ci465"]
+
+[ext_resource type="Script" path="res://scripts/ui/OptionsMenu.cs" id="1_qih7g"]
+[ext_resource type="Script" path="res://scripts/ui/AudioOptions.cs" id="2_1enga"]
+
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("audioOptions")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qih7g")
+audioOptions = NodePath("AudioOptions")
+
+[node name="AudioOptions" type="Control" parent="." node_paths=PackedStringArray("masterSlider", "sfxSlider", "musicSlider")]
+layout_mode = 1
+anchor_left = 0.28125
+anchor_top = 0.327161
+anchor_right = 0.71875
+anchor_bottom = 0.67284
+offset_top = -1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("2_1enga")
+masterSlider = NodePath("VBoxContainer/MasterSlider")
+sfxSlider = NodePath("VBoxContainer/SFXSlider")
+musicSlider = NodePath("VBoxContainer/MusicSlider")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AudioOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.767857
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterLabel" type="Label" parent="AudioOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="AudioOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.05
+
+[node name="SFXLabel" type="Label" parent="AudioOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="AudioOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.05
+
+[node name="MusicLabel" type="Label" parent="AudioOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="AudioOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.05
+
+[node name="Apply" type="Button" parent="AudioOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.785714
+anchor_top = 0.861607
+anchor_right = 0.888889
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+text = "Apply"
+metadata/_edit_use_anchors_ = true
+
+[node name="Close" type="Button" parent="AudioOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.900794
+anchor_top = 0.861607
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 3
+text = "Close"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_exited" from="AudioOptions/VBoxContainer/MasterSlider" to="AudioOptions" method="OnMasterSliderMouseExited"]
+[connection signal="mouse_exited" from="AudioOptions/VBoxContainer/SFXSlider" to="AudioOptions" method="OnSFXSliderMouseExited"]
+[connection signal="mouse_exited" from="AudioOptions/VBoxContainer/MusicSlider" to="AudioOptions" method="OnMusicSliderMouseExited"]
+[connection signal="pressed" from="AudioOptions/Apply" to="." method="OnApplyPressed"]
+[connection signal="pressed" from="AudioOptions/Close" to="." method="OnClosePressed"]

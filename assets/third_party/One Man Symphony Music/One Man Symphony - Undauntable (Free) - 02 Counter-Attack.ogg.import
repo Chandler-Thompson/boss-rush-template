@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ruevhhjdtcn7"
+path="res://.godot/imported/One Man Symphony - Undauntable (Free) - 02 Counter-Attack.ogg-49dc0192754efcd5bc0e92e87fae79ce.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/third_party/One Man Symphony Music/One Man Symphony - Undauntable (Free) - 02 Counter-Attack.ogg"
+dest_files=["res://.godot/imported/One Man Symphony - Undauntable (Free) - 02 Counter-Attack.ogg-49dc0192754efcd5bc0e92e87fae79ce.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
