@@ -69,16 +69,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1bmk"]
-size = Vector2(38, 44)
+size = Vector2(16, 16)
 
-[node name="RigidBody2D" type="RigidBody2D" groups=["mobs"]]
-collision_mask = 0
-gravity_scale = 0.0
+[node name="Mob" type="CharacterBody2D" groups=["mobs"]]
 script = ExtResource("1_70dbm")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_8vj1i")
 animation = &"skeleton"
 frame = 2
@@ -88,5 +85,7 @@ frame_progress = 0.950257
 shape = SubResource("RectangleShape2D_a1bmk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 4.17233e-07)
+scale = Vector2(0.8, 0.8)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreentNotifier2DScreenExited"]

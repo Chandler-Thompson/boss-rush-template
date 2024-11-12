@@ -1,18 +1,21 @@
 using Godot;
 
-public partial class Player : Area2D
+public partial class Player : Entity
 {
 	
 	[Signal]
-	public delegate void HitEventHandler();
+	public delegate void KilledEventHandler();
 
 	[Export]
 	public int Speed { get; set; } = 400; // pixels/sec
 	
 	public Vector2 ScreenSize; // size of the game window
+
+	private bool _isDead = false;
 	
 	public void Start(Vector2 position)
 	{
+		_isDead = false;
 		Position = position;
 		Show();
 		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
@@ -27,16 +30,14 @@ public partial class Player : Area2D
 		Hide();
 	}
 
-	private void OnBodyEntered(Node2D body)
+	// Called every tick. 'delta' is the elapsed time since the previous tick.
+	public override void _PhysicsProcess(double delta)
 	{
-		Hide();
-		EmitSignal(SignalName.Hit);
-		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		if(_isDead)
+		{
+			return;
+		}
 
 		var velocity = Vector2.Zero;
 
@@ -87,11 +88,12 @@ public partial class Player : Area2D
 			animatedSprite2D.SpeedScale = 1;
 		}
 
-		Position += velocity * (float)delta;
-		Position = new Vector2(
-			x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-			y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
-		);
+		var collision = MoveAndCollide(velocity * (float)delta);
+		if (collision != null)
+		{
+			
+			GD.Print("I hit "+((Node)collision.GetCollider()).Name+"!");
+		}
 
 		if (velocity.X != 0)
 		{
@@ -105,5 +107,14 @@ public partial class Player : Area2D
 		}
 
 	}
+
+	public void Hit()
+	{
+		Hide();
+		_isDead = true;
+		EmitSignal(SignalName.Killed);
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+	}
+
 }
 

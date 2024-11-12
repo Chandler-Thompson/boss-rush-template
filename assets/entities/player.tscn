@@ -1,25 +1,25 @@
 [gd_scene load_steps=8 format=3 uid="uid://ny7ckmvfvf20"]
 
 [ext_resource type="Script" path="res://scripts/entities/Player.cs" id="1_34jsk"]
-[ext_resource type="Texture2D" uid="uid://bmbpbyq237jwy" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v2/priest1_v2_1.png" id="2_8inng"]
-[ext_resource type="Texture2D" uid="uid://be7so77lw8fax" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v2/priest1_v2_2.png" id="3_5gi8s"]
-[ext_resource type="Texture2D" uid="uid://d1b3fjymrcrhq" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v2/priest1_v2_3.png" id="4_jty7q"]
-[ext_resource type="Texture2D" uid="uid://blxca5q303160" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v2/priest1_v2_4.png" id="5_42ieh"]
+[ext_resource type="Texture2D" uid="uid://be0qmekgydpui" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_1.png" id="2_gwixb"]
+[ext_resource type="Texture2D" uid="uid://c0wnjbd2eph7q" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_2.png" id="3_kce32"]
+[ext_resource type="Texture2D" uid="uid://dkhr27jgbnfid" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_3.png" id="4_vuvbe"]
+[ext_resource type="Texture2D" uid="uid://ug47iqoldpca" path="res://assets/third_party/2D Pixel Dungeon Asset Pack/Character_animation/priests_idle/priest1/v1/priest1_v1_4.png" id="5_y311m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4vbq5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_8inng")
+"texture": ExtResource("2_gwixb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_5gi8s")
+"texture": ExtResource("3_kce32")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_jty7q")
+"texture": ExtResource("4_vuvbe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_42ieh")
+"texture": ExtResource("5_y311m")
 }],
 "loop": true,
 "name": &"idle",
@@ -27,11 +27,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgqw0"]
-size = Vector2(16, 16)
+size = Vector2(17, 16)
 
-[node name="Player" type="Area2D"]
-scale = Vector2(3, 3)
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_34jsk")
+Speed = 200
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -41,6 +42,9 @@ frame_progress = 0.326063
 speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_wgqw0")
 
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
